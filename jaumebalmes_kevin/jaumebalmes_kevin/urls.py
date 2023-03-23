@@ -15,7 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-
+from django.urls import include
+# Afegeixo perque apunti a les urls
 urlpatterns = [
+    path('prova/', include('projecte_m07.urls')),
     path('admin/', admin.site.urls),
 ]
