@@ -6,14 +6,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Template</title>
+    <link rel="icon" href="https://www.jaumebalmes.net/wp-content/uploads/2021/09/cropped-logo_hd-32x32.png"
+        sizes="32x32">
+
 </head>
 
 <body>
     <!-- Aqui llamo el header del otro documento -->
     {% include "head/header.html" %}
-    <h1>Index de la app</h1>
-    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Incidunt, pariatur!</p>
-    {{name}} {{surname}} {{age}}
+    <div class="container">
+        <h1>Index de la app</h1>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Incidunt, pariatur!</p>
+        {{name}} {{surname}} {{age}}
+    </div>
 </body>
 
 </html>
