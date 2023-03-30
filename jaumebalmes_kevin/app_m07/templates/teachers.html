@@ -2,9 +2,8 @@
 {% block content %}
 <h1>Listado de profes</h1>
 <ul>
-    {% for s in tchrs %}
-    <li>{{s.id}} {{s.name}} {{s.course}}</li>
+    {% for t in tchrs %}
+    <li>{{t.id}} {{t.name}} <a href="teacher/{{t.id}}">More info</a></li>
     {% endfor %}
 </ul>
-</body>
 {% endblock %}
