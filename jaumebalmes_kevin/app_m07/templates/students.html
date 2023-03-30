@@ -1,0 +1,12 @@
+
+{% extends 'index.html' %}
+{% block content %}
+<h1>Listado de alumnos</h1>
+
+<ul>
+    {% for s in stdnts %}
+    <li>{{s.id}} {{s.name}} <a href="student/{{s.id}}">More info</a></li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

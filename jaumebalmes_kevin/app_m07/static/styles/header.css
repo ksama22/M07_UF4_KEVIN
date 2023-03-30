@@ -1,0 +1,16 @@
+.head {
+  background-color: lightblue;
+  border: 1px solid black;
+  padding: 20px;
+}
+.container {
+    background-color: white;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 10px;
+    height: 100vh;
+}
+body {
+  margin: 0px;
+  background-color: lightgray;
+}
