@@ -18,7 +18,7 @@ from django.urls import path
 from django.urls import include
 # Afegeixo perque apunti a les urls
 urlpatterns = [
-    #en el include va la aplicacion 'projecte_m07' ES UNA APLIcACION, (DE MUCHAS QUE PUEDO CREAR)
-    path('projecte/', include('projecte_m07.urls')),
+    #en el include va la aplicacion 'app_m07' ES UNA APLIcACION, (DE MUCHAS QUE PUEDO CREAR)
+    path('projecte/', include('app_m07.urls')),
     path('admin/', admin.site.urls)
 ]

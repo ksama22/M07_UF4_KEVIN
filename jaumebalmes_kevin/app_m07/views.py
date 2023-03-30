@@ -4,7 +4,7 @@ from django.template import Context, loader
 # Create your views here.
 
 
-#Fem referencia 'jaumebalmes_kevin\projecte_m07\urls.py'
+#Fem referencia 'jaumebalmes_kevin\app_m07\urls.py'
 #Carrega les dades al html indicat
 def index(request):
     profe = {"name":"Roger","surname":"Sobrino","age":"17"}
@@ -17,7 +17,7 @@ def index(request):
 #def index(request):
 #    return HttpResponse("Hola?")
 
-#Carrega un index.html de 'jaumebalmes_kevin\projecte_m07\templates\index.html'
+#Carrega un index.html de 'jaumebalmes_kevin\app_m07\templates\index.html'
 #def index(request):
 #     template = loader.get_template('index.html')
 #     return HttpResponse(template.render())
