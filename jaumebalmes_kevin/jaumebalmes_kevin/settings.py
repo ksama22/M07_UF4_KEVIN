@@ -76,10 +76,15 @@ WSGI_APPLICATION = 'jaumebalmes_kevin.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+# Best Video. Miralo profe https://www.youtube.com/watch?v=XY7MoeW2acc
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'django_mvt',
+        'USER':'root',
+        'PASSWORD':'',
+        'HOST':'127.0.0.1',
+        'PORT':'3306'
     }
 }
 

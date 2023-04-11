@@ -2,8 +2,6 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import Context, loader
 # Create your views here.
-
-
 #Fem referencia 'jaumebalmes_kevin\app_m07\urls.py'
 #Carrega les dades al html indicat
 #def index(request):
@@ -28,8 +26,11 @@ def users(request):
     return render(request, 'users.html',context)
 
 #Carrega tots els profesors
-def teachers(request):
-    context = {"tchrs": teachersList}
+def teachers(request,pk):
+    ## Ara la crida fa es fa per sql
+    nteachers = Teacher.objects.get(id=pk)
+    context = {'tchrs':nteachers}
+    #context = {"tchrs": teachersList}
     return render(request, 'teachers.html', context)
 
 #Carrega tots els estudiants
