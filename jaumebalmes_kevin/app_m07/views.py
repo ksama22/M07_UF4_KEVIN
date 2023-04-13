@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import Context, loader
+from .forms import StudentForm, TeacherForm
 # Create your views here.
 #Fem referencia 'jaumebalmes_kevin\app_m07\urls.py'
 #Carrega les dades al html indicat
@@ -26,10 +27,10 @@ def users(request):
     return render(request, 'users.html',context)
 
 #Carrega tots els profesors
-def teachers(request,pk):
+def teachers(request):
     ## Ara la crida fa es fa per sql
-    nteachers = Teacher.objects.get(id=pk)
-    context = {'tchrs':nteachers}
+    #nteachers = Teacher.objects.get(id=pk)
+    context = {'tchrs':teachersList}
     #context = {"tchrs": teachersList}
     return render(request, 'teachers.html', context)
 
@@ -55,6 +56,18 @@ def teacher(request, pk):
             teacher_obj = i
         #print("dato1: {} dato2:{} condition: {}".format(i['id'],pk,i['id']==int(pk)))
     return render(request, 'teacher.html',{'tchr':teacher_obj})
+
+#Formulari Student
+def student_form(request):
+    form = StudentForm()
+    context = {'forms':form}
+    return render(request,'form.html',context)
+
+#Formulari Teacher
+def teacher_form(request):
+    form = TeacherForm()
+    context = {'forms':form}
+    return render(request,'form.html',context)
 
 
 #Defineix dos llistes per defecte de les dades
