@@ -27,10 +27,10 @@ def users(request):
     return render(request, 'users.html',context)
 
 #Carrega tots els profesors
-def teachers(request,pk):
+def teachers(request):
     ## Ara la crida fa es fa per sql
-    nteachers = Teacher.objects.get(id=pk)
-    context = {'tchrs':nteachers}
+    #nteachers = Teacher.objects.get(id=pk)
+    context = {'tchrs':teachersList}
     #context = {"tchrs": teachersList}
     return render(request, 'teachers.html', context)
 
