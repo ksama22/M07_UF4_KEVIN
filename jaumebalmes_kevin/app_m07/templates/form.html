@@ -1,0 +1,12 @@
+
+{% block content %}
+
+<h1>Formulari PROVA</h1>
+<form action="" method="POST">
+    {% csrf_token %}
+    {{ forms.as_p }}
+    <input type="submit">
+</form>
+<a href="/projecte/">Back</a>
+
+{% endblock %}

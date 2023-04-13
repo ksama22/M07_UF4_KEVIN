@@ -14,6 +14,10 @@
 <body>
     <!-- Aqui llamo el header del otro documento -->
     {% include "head/header.html" %}
+    <!-- Fa link al form.html -->
+    <a href="{% url 'student_form' %}">Afegir Student</a>
+    <a href="{% url 'teacher_form' %}">Afegir Teacher</a>
+
     <div class="container">
         <h1>Bienvenido</h1>
         <!-- {{name}} {{surname}} {{age}} -->
