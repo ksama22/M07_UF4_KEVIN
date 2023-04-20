@@ -3,7 +3,35 @@
 <h1>Listado de profes</h1>
 <ul>
     {% for t in tchrs %}
-    <li>{{t.id}} {{t.name}} <a href="teacher/{{t.id}}">More info</a></li>
+    <li>{{t.id}} {{t.name}}
+        <a class="info"  href="teacher/{{t.id}}">INFO</a>
+        <a class="edit"  href="{% url 'update_teacher' t.id %}">EDIT</a>
+        <a class="delete" href="{% url 'delete_teacher' t.id %}">DELETE</a>
+    </li>
     {% endfor %}
 </ul>
+
+<style>
+    li> a{
+        text-decoration: none;
+        border-radius: 6px;
+        padding: 4px;
+        color: white;
+    }
+    li{
+        list-style: none;
+        margin: 5px;
+        padding: 10px;
+        border: 1px solid black;
+    }
+    .info{
+        background-color: green;
+    }
+    .edit{
+        background-color: darkorange;
+    }
+    .delete{
+        background-color: red;
+    }
+</style>
 {% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'index.html' %}
+{% block content %}
+<form action="" method="POST">
+    {% csrf_token %}
+    <img src="https://smartlandapartments.com/wp-content/uploads/2022/03/CLE-3-Blog-8.jpg" height="200" alt="Gatito triste porque quieres borrar">
+    <h2>Segur que vols eliminar a "{{remove.name}}" ?</h2>
+    <button><a href="{% url 'students' %}">Back</a></button>
+    <input type="submit" value="CONFIRM">
+</form>
+{% endblock %}
+
+

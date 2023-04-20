@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.template import Context, loader
 from .forms import StudentForm, TeacherForm
+from .models import Teacher, Student
 # Create your views here.
 #Fem referencia 'jaumebalmes_kevin\app_m07\urls.py'
 #Carrega les dades al html indicat
@@ -28,46 +29,106 @@ def users(request):
 
 #Carrega tots els profesors
 def teachers(request):
-    ## Ara la crida fa es fa per sql
-    #nteachers = Teacher.objects.get(id=pk)
-    context = {'tchrs':teachersList}
+    #Agafa tots de la base de dades
+    teacherBBDDList = Teacher.objects.all()
+    context = {'tchrs':teacherBBDDList}
     #context = {"tchrs": teachersList}
     return render(request, 'teachers.html', context)
 
 #Carrega tots els estudiants
 def students(request):
-    context = {"stdnts": studentList}
+    #Agafa tots de la base de dades
+    studentBBDDList = Student.objects.all()
+    context = {"stdnts": studentBBDDList}
     return render(request, 'students.html',context)
 
 #Carrega un estudiant
 def student(request, pk):
-    student_obj = None
-    for i in studentList:
-        if i['id'] == int(pk):
-            student_obj = i
-        #print("dato1: {} dato2:{} condition: {}".format(i['id'],pk,i['id']==int(pk)))
+    #La trucada la fa per una 'id' en concreta
+    student_obj = Student.objects.get(id=pk)
     return render(request, 'student.html',{'stdnt':student_obj})
 
 #Carrega un profesor
 def teacher(request, pk):
-    teacher_obj = None
-    for i in teachersList:
-        if i['id'] == int(pk):
-            teacher_obj = i
-        #print("dato1: {} dato2:{} condition: {}".format(i['id'],pk,i['id']==int(pk)))
-    return render(request, 'teacher.html',{'tchr':teacher_obj})
+     #La trucada la fa per una 'id' en concreta
+     teacher_obj = Teacher.objects.get(id=pk)
+     return render(request, 'teacher.html',{'tchr':teacher_obj})
 
 #Formulari Student
 def student_form(request):
-    form = StudentForm()
+    form = StudentForm(request.POST)
+    if request.method == 'POST':
+        #Si es un metode post i el valid, envia el formulari
+        if form.is_valid():
+            #Si es valid l'envia
+            form.save()
+            # redirecciona a la 'url' /students
+            return redirect('students')
     context = {'forms':form}
     return render(request,'form.html',context)
 
 #Formulari Teacher
 def teacher_form(request):
-    form = TeacherForm()
+    form = TeacherForm(request.POST)
+    if request.method == 'POST':
+        #Si es un metode post i el valid, envia el formulari
+        if form.is_valid():
+            #Si es valid l'envia
+            form.save()
+            # redirecciona a la 'url' /teachers
+            return redirect('teachers')
     context = {'forms':form}
     return render(request,'form.html',context)
+
+#Formulari Update student
+def update_student(request, pk):
+    #Agafa les dades del 'student' en concret
+    student = Student.objects.get(id = pk)
+    form = StudentForm(instance=student)
+    if request.method == 'POST':
+        form = StudentForm(request.POST, instance=student)
+    if form.is_valid():
+        #Guarda els canvis
+        form.save()
+        # redirecciona a la 'url' /students
+        return redirect('students')
+    context = {'forms':form}
+    return render(request,'form.html',context)
+
+#Formulari Update teacher
+def update_teacher(request, pk):
+    #Agafa les dades del 'teacher' en concret
+    teacher = Teacher.objects.get(id = pk)
+    form = TeacherForm(instance=teacher)
+    if request.method == 'POST':
+        form = TeacherForm(request.POST, instance=teacher)
+    if form.is_valid():
+        #Guarda els canvis
+        form.save()
+        # redirecciona a la 'url' /teachers
+        return redirect('teachers')
+    context = {'forms':form}
+    return render(request,'form.html',context)
+
+def delete_student(request, pk):
+    #Agafa les dades del 'student' en concret
+    student = Student.objects.get(id = pk)
+    if request.method == 'POST':
+        #Esborra aquest en concret
+        student.delete()
+        return redirect("students")
+    context = {'remove':student}
+    return render(request,'form_remove.html',context)
+
+def delete_teacher(request, pk):
+    #Agafa les dades del 'teacher' en concret
+    teacher = Teacher.objects.get(id = pk)
+    if request.method == 'POST':
+        #Esborra aquest en concret
+        teacher.delete()
+        return redirect("teachers")
+    context = {'remove':teacher}
+    return render(request,'form_remove.html',context)
 
 
 #Defineix dos llistes per defecte de les dades
