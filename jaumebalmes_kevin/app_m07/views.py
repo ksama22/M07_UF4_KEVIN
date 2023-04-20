@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.template import Context, loader
 from .forms import StudentForm, TeacherForm
+
 # Create your views here.
 #Fem referencia 'jaumebalmes_kevin\app_m07\urls.py'
 #Carrega les dades al html indicat
@@ -59,13 +60,27 @@ def teacher(request, pk):
 
 #Formulari Student
 def student_form(request):
-    form = StudentForm()
+    form = StudentForm(request.POST)
+    if request.method == 'POST':
+        #Si es un metode post i el valid, envia el formulari
+        if form.is_valid():
+            #Si es valid l'envia
+            form.save()
+            # redirecciona a la 'url' /students
+            return redirect('students')
     context = {'forms':form}
     return render(request,'form.html',context)
 
 #Formulari Teacher
 def teacher_form(request):
-    form = TeacherForm()
+    form = TeacherForm(request.POST)
+    if request.method == 'POST':
+        #Si es un metode post i el valid, envia el formulari
+        if form.is_valid():
+            #Si es valid l'envia
+            form.save()
+            # redirecciona a la 'url' /teachers
+            return redirect('teachers')
     context = {'forms':form}
     return render(request,'form.html',context)
 
