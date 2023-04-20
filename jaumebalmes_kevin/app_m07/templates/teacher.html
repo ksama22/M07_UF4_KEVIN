@@ -3,6 +3,10 @@
 <h1>Teacher with id {{tchr.id}}</h1>
 <ul>
     <li>Name: {{tchr.name}}</li>
+    <li>Surname: {{tchr.surname}}</li>
+    <li>Age: {{tchr.age}}</li>
+    <li>Gender: {{tchr.gender}}</li>
+    <li>School: {{tchr.school}}</li>
     <li>Course: {{tchr.course}}</li>
     <li><a href="{% url 'update_teacher' tchr.id %}">EDIT</a></li>
 </ul>
