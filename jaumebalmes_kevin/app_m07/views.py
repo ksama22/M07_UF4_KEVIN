@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.template import Context, loader
 from .forms import StudentForm, TeacherForm
-
+from .models import Teacher, Student
 # Create your views here.
 #Fem referencia 'jaumebalmes_kevin\app_m07\urls.py'
 #Carrega les dades al html indicat
@@ -84,6 +84,33 @@ def teacher_form(request):
     context = {'forms':form}
     return render(request,'form.html',context)
 
+#Formulari Update student
+def update_student(request, pk):
+    #Agafa les dades del 'student' en concret
+    student = Student.objects.get(id = pk)
+    form = StudentForm(instance=student)
+    if request.method == 'POST':
+        form = StudentForm(request.POST, instance=student)
+    if form.is_valid():
+        form.save()
+        # redirecciona a la 'url' /students
+        return redirect('students')
+    context = {'forms':form}
+    return render(request,'form.html',context)
+
+#Formulari Update teacher
+def update_teacher(request, pk):
+    #Agafa les dades del 'teacher' en concret
+    teacher = Teacher.objects.get(id = pk)
+    form = TeacherForm(instance=teacher)
+    if request.method == 'POST':
+        form = TeacherForm(request.POST, instance=teacher)
+    if form.is_valid():
+        form.save()
+        # redirecciona a la 'url' /teachers
+        return redirect('teachers')
+    context = {'forms':form}
+    return render(request,'form.html',context)
 
 #Defineix dos llistes per defecte de les dades
 teachersList = [  {"id": 1,"name": "Pedro Perez","course": "Matematicas"  },  {"id": 2,"name": "Maria Garcia","course": "Historia"  },  {"id": 3,"name": "Pedro Gomez","course": "Ciencias"  },  {"id": 4,"name": "Ana Lopez","course": "Literatura"  },  {"id": 5,"name": "Carlos Sanchez","course": "Ingles"  },  {"id": 6,"name": "Laura Torres","course": "Educacion Fisica"  },  {"id": 7,"name": "Javier Hernandez","course": "Filosofia"  },  {"id": 8,"name": "Silvia Ruiz","course": "Quimica"  },  {"id": 9,"name": "Antonio Martinez","course": "Geografia"  },  {"id": 10,"name": "Isabel Torres","course": "Arte"  }]

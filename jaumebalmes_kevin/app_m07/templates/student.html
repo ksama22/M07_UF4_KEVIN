@@ -4,6 +4,7 @@
 <ul>
     <li>Name: {{stdnt.name}}</li>
     <li>Age: {{stdnt.age}}</li>
+    <li><a href="{% url 'update_student' stdnt.id %}">EDIT</a></li>
 </ul>
 
 <a href="/projecte/students">Back</a>
