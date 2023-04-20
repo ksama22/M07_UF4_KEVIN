@@ -29,34 +29,30 @@ def users(request):
 
 #Carrega tots els profesors
 def teachers(request):
-    ## Ara la crida fa es fa per sql
-    #nteachers = Teacher.objects.get(id=pk)
-    context = {'tchrs':teachersList}
+    #Agafa tots de la base de dades
+    teacherBBDDList = Teacher.objects.all()
+    context = {'tchrs':teacherBBDDList}
     #context = {"tchrs": teachersList}
     return render(request, 'teachers.html', context)
 
 #Carrega tots els estudiants
 def students(request):
-    context = {"stdnts": studentList}
+    #Agafa tots de la base de dades
+    studentBBDDList = Student.objects.all()
+    context = {"stdnts": studentBBDDList}
     return render(request, 'students.html',context)
 
 #Carrega un estudiant
 def student(request, pk):
-    student_obj = None
-    for i in studentList:
-        if i['id'] == int(pk):
-            student_obj = i
-        #print("dato1: {} dato2:{} condition: {}".format(i['id'],pk,i['id']==int(pk)))
+    #La trucada la fa per una 'id' en concreta
+    student_obj = Student.objects.get(id=pk)
     return render(request, 'student.html',{'stdnt':student_obj})
 
 #Carrega un profesor
 def teacher(request, pk):
-    teacher_obj = None
-    for i in teachersList:
-        if i['id'] == int(pk):
-            teacher_obj = i
-        #print("dato1: {} dato2:{} condition: {}".format(i['id'],pk,i['id']==int(pk)))
-    return render(request, 'teacher.html',{'tchr':teacher_obj})
+     #La trucada la fa per una 'id' en concreta
+     teacher_obj = Teacher.objects.get(id=pk)
+     return render(request, 'teacher.html',{'tchr':teacher_obj})
 
 #Formulari Student
 def student_form(request):
