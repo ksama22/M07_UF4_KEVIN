@@ -5,7 +5,12 @@
 
 <ul>
     {% for s in stdnts %}
-    <li>{{s.id}} {{s.name}} <a href="student/{{s.id}}">More info</a></li>
+    <li>{{s.id}} {{s.name}} 
+        <a href="student/{{s.id}}">INFO</a> 
+        <a href="{% url 'update_student' s.id %}">EDIT</a>
+        <a href="{% url 'delete_student' s.id %}">DELETE</a>
+    </li>
+
     {% endfor %}
 </ul>
 

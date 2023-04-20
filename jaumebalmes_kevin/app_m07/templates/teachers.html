@@ -3,7 +3,7 @@
 <h1>Listado de profes</h1>
 <ul>
     {% for t in tchrs %}
-    <li>{{t.id}} {{t.name}} <a href="teacher/{{t.id}}">More info</a></li>
+    <li>{{t.id}} {{t.name}} <a href="teacher/{{t.id}}">INFO</a> <a href="{% url 'update_teacher' t.id %}">EDIT</a></li>
     {% endfor %}
 </ul>
 {% endblock %}

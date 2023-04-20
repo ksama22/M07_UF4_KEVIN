@@ -88,6 +88,7 @@ def update_student(request, pk):
     if request.method == 'POST':
         form = StudentForm(request.POST, instance=student)
     if form.is_valid():
+        #Guarda els canvis
         form.save()
         # redirecciona a la 'url' /students
         return redirect('students')
@@ -102,11 +103,23 @@ def update_teacher(request, pk):
     if request.method == 'POST':
         form = TeacherForm(request.POST, instance=teacher)
     if form.is_valid():
+        #Guarda els canvis
         form.save()
         # redirecciona a la 'url' /teachers
         return redirect('teachers')
     context = {'forms':form}
     return render(request,'form.html',context)
+
+def delete_student(request, pk):
+    #Agafa les dades del 'student' en concret
+    student = Student.objects.get(id = pk)
+    if request.method == 'POST':
+        #Esborra aquest en concret
+        student.delete()
+        return redirect("students")
+    context = {'remove':student}
+    return render(request,'form_remove.html',context)
+
 
 #Defineix dos llistes per defecte de les dades
 teachersList = [  {"id": 1,"name": "Pedro Perez","course": "Matematicas"  },  {"id": 2,"name": "Maria Garcia","course": "Historia"  },  {"id": 3,"name": "Pedro Gomez","course": "Ciencias"  },  {"id": 4,"name": "Ana Lopez","course": "Literatura"  },  {"id": 5,"name": "Carlos Sanchez","course": "Ingles"  },  {"id": 6,"name": "Laura Torres","course": "Educacion Fisica"  },  {"id": 7,"name": "Javier Hernandez","course": "Filosofia"  },  {"id": 8,"name": "Silvia Ruiz","course": "Quimica"  },  {"id": 9,"name": "Antonio Martinez","course": "Geografia"  },  {"id": 10,"name": "Isabel Torres","course": "Arte"  }]
