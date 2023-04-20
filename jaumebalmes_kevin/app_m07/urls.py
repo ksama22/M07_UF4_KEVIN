@@ -15,6 +15,6 @@ urlpatterns =[
     #Path formulari
     path('update-teacher/<str:pk>/',views.update_teacher, name='update_teacher'),
     path('update-student/<str:pk>/',views.update_student, name='update_student'),
-    path('delete-student/<str:pk>/',views.delete_student, name='delete_student')
-
+    path('delete-student/<str:pk>/',views.delete_student, name='delete_student'),
+    path('delete-teacher/<str:pk>/',views.delete_teacher, name='delete_teacher'),
 ]

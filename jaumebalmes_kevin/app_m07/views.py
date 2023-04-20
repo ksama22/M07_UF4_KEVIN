@@ -120,6 +120,16 @@ def delete_student(request, pk):
     context = {'remove':student}
     return render(request,'form_remove.html',context)
 
+def delete_teacher(request, pk):
+    #Agafa les dades del 'teacher' en concret
+    teacher = Teacher.objects.get(id = pk)
+    if request.method == 'POST':
+        #Esborra aquest en concret
+        teacher.delete()
+        return redirect("teachers")
+    context = {'remove':teacher}
+    return render(request,'form_remove.html',context)
+
 
 #Defineix dos llistes per defecte de les dades
 teachersList = [  {"id": 1,"name": "Pedro Perez","course": "Matematicas"  },  {"id": 2,"name": "Maria Garcia","course": "Historia"  },  {"id": 3,"name": "Pedro Gomez","course": "Ciencias"  },  {"id": 4,"name": "Ana Lopez","course": "Literatura"  },  {"id": 5,"name": "Carlos Sanchez","course": "Ingles"  },  {"id": 6,"name": "Laura Torres","course": "Educacion Fisica"  },  {"id": 7,"name": "Javier Hernandez","course": "Filosofia"  },  {"id": 8,"name": "Silvia Ruiz","course": "Quimica"  },  {"id": 9,"name": "Antonio Martinez","course": "Geografia"  },  {"id": 10,"name": "Isabel Torres","course": "Arte"  }]
